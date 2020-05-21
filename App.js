@@ -1,10 +1,73 @@
 import React from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, FlatList, Alert, Platform, AppRegistry } from 'react-native';
-
+// import AsyncStorage from '@react-native-community/async-storage';
 export default class App extends React.Component {
   state = {
-    phoneNumber: "",
+    phoneNumber: '',
     otp: ""
+  }
+  getDataUsingGet() {
+    //GET request 
+    fetch('https://reqres.in/api/users?page=1', {
+      method: 'GET'
+
+      //Request Type 
+    })
+      .then((response) => response.json())
+      //If response is in json then in success
+      .then((responseJson) => {
+        //Success 
+        // alert(JSON.stringify(responseJson));
+
+        console.log(responseJson);
+      })
+      //If response is not in json then in error
+      .catch((error) => {
+        //Error 
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
+    Alert.alert('You are redirected to register page! Please Wait')
+  }
+  getDataUsingPost() {
+    //POST json 
+    var dataToSend = {
+      "email": "eve.holt@reqres.in",
+      "password": "cityslicka"
+    };
+    //making data to send on server
+    var formBody = [];
+    for (var key in dataToSend) {
+      var encodedKey = encodeURIComponent(key);
+      var encodedValue = encodeURIComponent(dataToSend[key]);
+      formBody.push(encodedKey + "=" + encodedValue);
+    }
+    formBody = formBody.join("&");
+    //POST request 
+    fetch('https://reqres.in/api/login', {
+      method: "POST",//Request Type 
+      body: formBody,//post body 
+      headers: {//Header Defination 
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+    })
+      .then((response) => response.json())
+      //If response is in json then in success
+      .then((responseJson) => {
+
+        alert(JSON.stringify(responseJson));
+        // console.log(responseJson);
+        var res = responseJson
+        var res_token = res.token;
+        console.log(res_token)
+        console.log(res)
+      })
+
+      //If response is not in json then in error
+      .catch((error) => {
+        alert(JSON.stringify(error));
+        console.error(error);
+      });
   }
 
   render() {
@@ -31,7 +94,7 @@ export default class App extends React.Component {
             keyboardType={'numeric'}
           />
         </View>
-        <TouchableOpacity onPress={() => Alert.alert('You are redirected to register page! Please Wait')} style={styles.loginBtn}>
+        <TouchableOpacity onPress={() => this.getDataUsingPost()} style={styles.loginBtn}>
 
           <Text style={styles.loginText}>LOGIN</Text>
         </TouchableOpacity>
