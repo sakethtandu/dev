@@ -9,23 +9,23 @@
 //     </View>
 //   );
 // }
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ActivityIndicator, FlatList, Alert, Platform, AppRegistry } from 'react-native';
 // import AsyncStorage from '@react-native-community/async-storage';
 import { createStackNavigator } from 'react-navigation-stack';
-export function About() {}
-export default  class App extends React.Component {
-   res;
-   pressHandler = () => {
+export function About() { }
+export default class App extends React.Component {
+  res;
+  pressHandler = () => {
     //navigation.navigate('ReviewDetails');
-    const {navigate}=this.props.navigation;
+    const { navigate } = this.props.navigation;
     navigation.push('Login');
   }
   state = {
     email: '',
     otp: ""
   }
-  
+
   getDataUsingGet() {
     var emailId = this.state.email
     var url = "http://ec2-52-12-91-65.us-west-2.compute.amazonaws.com:8080/swrmsdc/authentication/sendOTP?emailId=";
@@ -40,10 +40,10 @@ export default  class App extends React.Component {
       //If response is in json then in success
       .then((responseJson) => {
 
-        alert(JSON.stringify(responseJson));
+        // alert(JSON.stringify(responseJson));
         var res = responseJson
         console.log(res)
-        this.props.navigation.navigate('Login',res)
+        this.props.navigation.navigate('Login', res)
 
       })
 
@@ -54,7 +54,7 @@ export default  class App extends React.Component {
         alert(JSON.stringify(error));
         console.error(error);
       });
-    Alert.alert('You are redirected to register page! Please Wait')
+    // Alert.alert('You are redirected to register page! Please Wait')
 
     // verifyOTP
   }
@@ -88,8 +88,8 @@ export default  class App extends React.Component {
         // console.log(responseJson);
         var res = responseJson
         var res_token = res.token;
-       // console.log(res_token)
-       // console.log(res)
+        // console.log(res_token)
+        // console.log(res)
       })
 
       //If response is not in json then in error
@@ -124,7 +124,7 @@ export default  class App extends React.Component {
           />
         </View> */}
         {/* <TouchableOpacity onPress={() => this.getDataUsingGet()} style={styles.loginBtn}> */}
-        <TouchableOpacity onPress={() =>{ this.getDataUsingGet() }}  style={styles.loginBtn}>
+        <TouchableOpacity onPress={() => { this.getDataUsingGet() }} style={styles.loginBtn}>
           {/* <TouchableOpacity onPress={() => navigation.navigate('SampleNav', text)} style={styles.loginBtn}> */}
 
           <Text style={styles.loginText}>LOGIN</Text>

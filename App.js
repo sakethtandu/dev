@@ -29,9 +29,10 @@ import Navigator from './routes/drawer';
 export default function App() {
 
 
-  return (
-   // <Home/>
-<Navigator/>
+   return (
+      // <Home/>
+      //<Navigator/>
+      <About />
    );
 
 }
