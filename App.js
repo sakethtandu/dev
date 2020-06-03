@@ -29,9 +29,16 @@ import Navigator from './routes/drawer';
 export default function App() {
 
 
-  return (
-   // <Home/>
-<Navigator/>
+   return (
+      // <Home/>
+      // <About />
+
+      // componentDidMount(){
+
+      // AsyncStorage.getItem('token') ? navigation.navigate('Home'):navigation.navigate('Login')
+      // }
+
+      <Navigator />
    );
 
 }

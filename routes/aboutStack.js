@@ -6,27 +6,27 @@ import { createAppContainer } from 'react-navigation';
 import Header from '../shared/header';
 import { createStackNavigator } from 'react-navigation-stack';
 const screens = {
-    About: {
-      screen: About,
-      navigationOptions: ({ navigation }) => {
-        return {
-         // title:'login',
-        }
-      },
-      // navigationOptions:({ navigation })=>{}{
-      //   title:'login',
-      // },
+  About: {
+    screen: About,
+    navigationOptions: () => {
+      return {
+        // title:'login',
+      }
     },
-    Login:
-{
+    // navigationOptions:({ navigation })=>{}{
+    //   title:'login',
+    // },
+  },
+  Login:
+  {
     screen: Login,
     navigationOptions: {
       title: 'otp',
       //headerStyle: { backgroundColor: '#eee' }
     }
 
-}
   }
+}
 // const screens = {
 //   About: {
 //     screen: About,
